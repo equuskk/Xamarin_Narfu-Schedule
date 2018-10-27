@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarfuSchedule.Android", "NarfuSchedule\NarfuSchedule.Android\NarfuSchedule.Android.csproj", "{95832BA7-30AF-47AA-BCCA-ED864A47B036}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarfuSchedule", "NarfuSchedule\NarfuSchedule\NarfuSchedule.csproj", "{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95832BA7-30AF-47AA-BCCA-ED864A47B036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95832BA7-30AF-47AA-BCCA-ED864A47B036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95832BA7-30AF-47AA-BCCA-ED864A47B036}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{95832BA7-30AF-47AA-BCCA-ED864A47B036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95832BA7-30AF-47AA-BCCA-ED864A47B036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95832BA7-30AF-47AA-BCCA-ED864A47B036}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB5126C-D0BF-4679-97F1-AA4291A6B6E6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45E2A04B-BFB3-4258-9D7C-9439898468E8}
+	EndGlobalSection
+EndGlobal
