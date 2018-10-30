@@ -1,13 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:NarfuSchedule"
-             x:Class="NarfuSchedule.Views.MainPage"
-             Title="Главная">
-
-    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-        <Button Text="Hello there" Clicked="Button_OnClicked"/>
-        <Label Text="Welcome to Xamarin.Forms!"/>
-    </StackLayout>
-
-</ContentPage>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="NarfuSchedule.Views.MainPage"
+            xmlns:views="clr-namespace:NarfuSchedule.Views">
+    <views:LesssonsPage/>
+    <ContentPage Title="Tab 1" />
+</TabbedPage>

@@ -10,6 +10,7 @@ namespace NarfuSchedule.Models
         public string Address { get; set; }
         public string Teacher { get; set; }
         public string Groups { get; set; }
-    }
 
+        public string Uid { get; set; }
+    }
 }

@@ -3,6 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NarfuSchedule.App">
     <Application.Resources>
-
+        <DataTemplate x:Key="lessonList">
+            <ViewCell>
+                <ViewCell.View>
+                    <StackLayout Margin="5">
+                        <Label Text="{Binding Time, StringFormat='{0:H:mm}'}"/>
+                        <Label Text="{Binding Type}" FontSize="10"/>
+                        <Label Text="{Binding Name}"/>
+                        <Label Text="{Binding Teacher}"/>
+                        <Label Text="{Binding Groups}"/>
+                        <Label Text="{Binding Address}"/>
+                    </StackLayout>
+                </ViewCell.View>
+            </ViewCell>
+        </DataTemplate>
     </Application.Resources>
+
 </Application>
