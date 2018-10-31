@@ -17,11 +17,5 @@ namespace NarfuSchedule.Views
             _vm = new SettingsViewModel();
             BindingContext = _vm;
         }
-
-        private void Save_OnClicked(object sender, EventArgs e)
-        {
-            Settings.Group = _vm.Group;
-            DependencyService.Get<IMessage>().ShortTime("Сохранено!");
-        }
     }
 }

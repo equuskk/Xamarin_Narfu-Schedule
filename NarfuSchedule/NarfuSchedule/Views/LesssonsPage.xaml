@@ -1,12 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NarfuSchedule.Views.LesssonsPage"
              Title="Расписание">
     <StackLayout>
         <StackLayout Orientation="Horizontal">
-            <Button Text="Обновить" Clicked="Refresh_OnClicked"/>
-            <Button Text="Удалить" Clicked="Delete_OnClicked"/>
+            <Button Text="Обновить" Command="{Binding RefreshCommand}"/>
+            <Button Text="Удалить" Command="{Binding DeleteCommand}"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
         </StackLayout>
         <ListView Margin="5" BackgroundColor="LightSeaGreen" 
                   HasUnevenRows="True"

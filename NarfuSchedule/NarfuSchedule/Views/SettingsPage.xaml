@@ -1,13 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NarfuSchedule.Views.SettingsPage"
              Title="Настройки">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="5">
             <Label Text="Введите номер группы:"/>
             <Entry Text="{Binding Group}" Keyboard="Numeric"/>
-            <Button Text="Сохранить" Clicked="Save_OnClicked"/>
+            <Button Text="Сохранить" Command="{Binding SaveCommand}"/>
+
+            <Label TextColor="IndianRed"
+                   Text="После изменения номера группы, удалите все сохраненные пары и загрузите их заново!"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
