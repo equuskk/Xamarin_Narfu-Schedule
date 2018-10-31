@@ -5,17 +5,16 @@ namespace NarfuSchedule.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        protected BaseViewModel ()
+        protected BaseViewModel()
         {
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged ([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
-            handler?.Invoke (this, new PropertyChangedEventArgs (propertyName));
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

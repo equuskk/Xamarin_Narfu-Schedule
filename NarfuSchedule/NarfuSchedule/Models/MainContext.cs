@@ -18,6 +18,7 @@ namespace NarfuSchedule.Models
         }
 
         private static MainContext _instance;
+
         public static MainContext GetInstance()
         {
             if (_instance is null)

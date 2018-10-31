@@ -1,7 +1,4 @@
-﻿using NarfuSchedule.Helpers;
-using NarfuSchedule.ViewModels;
-using System;
-using NarfuSchedule.Models;
+﻿using NarfuSchedule.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,6 +8,7 @@ namespace NarfuSchedule.Views
     public partial class SettingsPage : ContentPage
     {
         private SettingsViewModel _vm;
+
         public SettingsPage()
         {
             InitializeComponent();

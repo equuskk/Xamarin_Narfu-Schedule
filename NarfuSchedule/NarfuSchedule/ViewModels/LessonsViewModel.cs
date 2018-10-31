@@ -11,7 +11,7 @@ namespace NarfuSchedule.ViewModels
         public IEnumerable<IGrouping<string, Lesson>> Lessons { get; set; } = new List<IGrouping<string, Lesson>>();
 
         public readonly MainContext _db = MainContext.GetInstance();
-        public bool IsBusy { get; set; } = false;
+        public bool IsBusy { get; set; }
 
         public LessonsViewModel()
         {

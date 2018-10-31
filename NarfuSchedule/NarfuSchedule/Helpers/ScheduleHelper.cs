@@ -35,7 +35,8 @@ namespace NarfuSchedule.Helpers
             }
 
             var cale = Calendar.LoadFromStream(GenerateStreamFromString(calen))[0];
-            foreach (var ev in cale.Events.Where(x => x.Start.AsSystemLocal.DayOfYear >= DateTime.Now.DayOfYear).OrderBy(x => x.Start).Distinct())
+            foreach (var ev in cale.Events.Where(x => x.Start.AsSystemLocal.DayOfYear >= DateTime.Now.DayOfYear)
+                .OrderBy(x => x.Start).Distinct())
             {
                 if (Db.Lessons.Any(x => x.Id == ev.Uid)) continue;
 
@@ -54,8 +55,8 @@ namespace NarfuSchedule.Helpers
                 i++;
             }
 
-            if(Db.ChangeTracker.HasChanges())
-               await Db.SaveChangesAsync();
+            if (Db.ChangeTracker.HasChanges())
+                await Db.SaveChangesAsync();
 
             return i;
         }

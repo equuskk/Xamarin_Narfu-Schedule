@@ -8,6 +8,7 @@ namespace NarfuSchedule.Views
     public partial class LesssonsPage : ContentPage
     {
         private LessonsViewModel _vm;
+
         public LesssonsPage()
         {
             InitializeComponent();
