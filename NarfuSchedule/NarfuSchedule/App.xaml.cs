@@ -18,7 +18,7 @@ namespace NarfuSchedule
             MainContext.SetPath(path);
             MainContext.GetInstance().Database.EnsureCreated();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

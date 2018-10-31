@@ -4,5 +4,5 @@
             x:Class="NarfuSchedule.Views.MainPage"
             xmlns:views="clr-namespace:NarfuSchedule.Views">
     <views:LesssonsPage/>
-    <ContentPage Title="Tab 1" />
+    <views:SettingsPage/>
 </TabbedPage>

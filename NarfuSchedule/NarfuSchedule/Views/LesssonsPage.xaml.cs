@@ -23,7 +23,7 @@ namespace NarfuSchedule.Views
             var i = await ScheduleHelper.LoadLessons();
 
             if (i != 0)
-                DependencyService.Get<IMessage>().LongTime($"Было добавлено {i} пар.");
+                DependencyService.Get<IMessage>().LongTime($"Добавлено {i} пар.");
 
             _vm.Lessons = _vm._db.GetGrouperLessons();
         }

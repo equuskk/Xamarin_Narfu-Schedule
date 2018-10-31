@@ -8,14 +8,14 @@ using Ical.Net;
 using NarfuSchedule.Models;
 using Xamarin.Forms;
 
-namespace NarfuSchedule
+namespace NarfuSchedule.Helpers
 {
     public static class ScheduleHelper
     {
-        private const string _endPoint = "https://ruz.narfu.ru";
-        private static MainContext _db = MainContext.GetInstance();
+        private const string EndPoint = "https://ruz.narfu.ru";
+        private static readonly MainContext Db = MainContext.GetInstance();
 
-        public static async Task<int> LoadLessons(short group = 9092)
+        public static async Task<int> LoadLessons()
         {
             var i = 0;
             var calen = "";
@@ -24,8 +24,7 @@ namespace NarfuSchedule
                 try
                 {
                     client.Encoding = Encoding.UTF8;
-                    calen = await client.DownloadStringTaskAsync(
-                        $"{_endPoint}/?icalendar&oid={group}&from={DateTime.Now:dd.MM.yyyy}");
+                    calen = await client.DownloadStringTaskAsync($"{EndPoint}/?icalendar&oid={Settings.Group}&from={DateTime.Now:dd.MM.yyyy}");
                 }
                 catch (WebException)
                 {
@@ -36,9 +35,9 @@ namespace NarfuSchedule
             }
 
             var cale = Calendar.LoadFromStream(GenerateStreamFromString(calen))[0];
-            foreach (var ev in cale.Events.OrderBy(x => x.Start).Distinct())
+            foreach (var ev in cale.Events.Where(x => x.Start.AsSystemLocal.DayOfYear >= DateTime.Now.DayOfYear).OrderBy(x => x.Start).Distinct())
             {
-                if (_db.Lessons.Any(x => x.Id == ev.Uid)) continue;
+                if (Db.Lessons.Any(x => x.Id == ev.Uid)) continue;
 
                 var data = ev.Description.Split('\n');
                 var les = new Lesson
@@ -51,12 +50,12 @@ namespace NarfuSchedule
                     Type = data[3],
                     Id = ev.Uid
                 };
-                await _db.Lessons.AddAsync(les);
+                await Db.Lessons.AddAsync(les);
                 i++;
             }
 
-            if(_db.ChangeTracker.HasChanges())
-               await _db.SaveChangesAsync();
+            if(Db.ChangeTracker.HasChanges())
+               await Db.SaveChangesAsync();
 
             return i;
         }
