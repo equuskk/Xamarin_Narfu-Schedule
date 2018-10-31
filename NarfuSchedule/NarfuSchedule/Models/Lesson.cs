@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace NarfuSchedule.Models
 {
@@ -11,6 +12,7 @@ namespace NarfuSchedule.Models
         public string Teacher { get; set; }
         public string Groups { get; set; }
 
-        public string Uid { get; set; }
+        [Key]
+        public string Id { get; set; }
     }
 }

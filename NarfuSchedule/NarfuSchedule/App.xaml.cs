@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NarfuSchedule.Models;
 using NarfuSchedule.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,9 +8,15 @@ namespace NarfuSchedule
 {
     public partial class App : Application
     {
+        public const string DbFilename = "narfuScheduleApp.db";
+
         public App()
         {
             InitializeComponent();
+
+            var path = DependencyService.Get<IPath>().GetDatabasePath(DbFilename);
+            MainContext.SetPath(path);
+            MainContext.GetInstance().Database.EnsureCreated();
 
             MainPage = new NavigationPage(new MainPage());
         }

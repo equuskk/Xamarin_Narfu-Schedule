@@ -1,41 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Ical.Net;
 using NarfuSchedule.Models;
+using Xamarin.Forms;
 
 namespace NarfuSchedule
 {
     public static class ScheduleHelper
     {
         private const string _endPoint = "https://ruz.narfu.ru";
+        private static MainContext _db = MainContext.GetInstance();
 
-        public static List<Lesson> LoadCalendar(short group = 9092)
+        public static async Task<int> LoadLessons(short group = 9092)
         {
+            var i = 0;
             var calen = "";
             using (var client = new WebClient())
             {
                 try
                 {
                     client.Encoding = Encoding.UTF8;
-                    calen = client.DownloadString(
+                    calen = await client.DownloadStringTaskAsync(
                         $"{_endPoint}/?icalendar&oid={group}&from={DateTime.Now:dd.MM.yyyy}");
                 }
-                catch (WebException e)
+                catch (WebException)
                 {
-                    return new List<Lesson>();
+                    DependencyService.Get<IMessage>().LongTime("Невозможно получить расписание.\n" +
+                                                               "Либо сайт недоступен, либо подключитесь к интернету"); //TODO: убрать отсюда?
+                    return 0;
                 }
             }
 
             var cale = Calendar.LoadFromStream(GenerateStreamFromString(calen))[0];
-            var lessons = new List<Lesson>();
             foreach (var ev in cale.Events.OrderBy(x => x.Start).Distinct())
             {
-                var data = ev.Description.Split('\n');
+                if (_db.Lessons.Any(x => x.Id == ev.Uid)) continue;
 
+                var data = ev.Description.Split('\n');
                 var les = new Lesson
                 {
                     Address = ev.Location,
@@ -44,11 +49,16 @@ namespace NarfuSchedule
                     Teacher = data[4],
                     Time = ev.Start.AsSystemLocal,
                     Type = data[3],
-                    Uid = ev.Uid
+                    Id = ev.Uid
                 };
-                lessons.Add(les);
+                await _db.Lessons.AddAsync(les);
+                i++;
             }
-            return lessons;
+
+            if(_db.ChangeTracker.HasChanges())
+               await _db.SaveChangesAsync();
+
+            return i;
         }
 
         //public static List<Lesson> GetExams()

@@ -1,4 +1,7 @@
-﻿using NarfuSchedule.ViewModels;
+﻿using System;
+using NarfuSchedule.Helpers;
+using NarfuSchedule.Models;
+using NarfuSchedule.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,18 +10,32 @@ namespace NarfuSchedule.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LesssonsPage : ContentPage
     {
+        private LessonsViewModel _vm;
         public LesssonsPage()
         {
             InitializeComponent();
-            BindingContext = new LessonsViewModel();
+            _vm = new LessonsViewModel();
+            BindingContext = _vm;
         }
 
-        //void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        //{
-        //    if (e.Item == null)
-        //        return;
+        private async void Refresh_OnClicked(object sender, EventArgs e)
+        {
+            var i = await ScheduleHelper.LoadLessons();
 
-        //    DependencyService.Get<IMessage>().ShortTime(e.Item.ToString());
-        //}
+            if (i != 0)
+                DependencyService.Get<IMessage>().LongTime($"Было добавлено {i} пар.");
+
+            _vm.Lessons = _vm._db.GetGrouperLessons();
+        }
+
+        private async void Delete_OnClicked(object sender, EventArgs e)
+        {
+            var result = await DisplayAlert("Очистить", "Вы действительно хотите очистить список пар?", "Да", "Нет");
+            if (!result) return;
+
+            _vm._db.Lessons.Clear(); //TODO: зачем так много строк?
+            await _vm._db.SaveChangesAsync();
+            _vm.Lessons = _vm._db.GetGrouperLessons();
+        }
     }
 }
