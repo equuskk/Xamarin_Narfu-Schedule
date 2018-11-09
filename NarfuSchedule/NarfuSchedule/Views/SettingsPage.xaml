@@ -4,7 +4,7 @@
              Title="Настройки">
     <ContentPage.Content>
         <StackLayout Margin="5">
-            <Label Text="Введите номер группы:"/>
+            <Label Text="Введите номер группы с сайта:"/>
             <Entry Text="{Binding Group}" Keyboard="Numeric"/>
             <Button Text="Сохранить" Command="{Binding SaveCommand}"/>
 

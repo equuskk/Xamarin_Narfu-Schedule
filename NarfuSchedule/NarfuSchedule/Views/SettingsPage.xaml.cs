@@ -7,13 +7,10 @@ namespace NarfuSchedule.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        private SettingsViewModel _vm;
-
         public SettingsPage()
         {
             InitializeComponent();
-            _vm = new SettingsViewModel();
-            BindingContext = _vm;
+            BindingContext = new SettingsViewModel();
         }
     }
 }

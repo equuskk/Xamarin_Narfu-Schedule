@@ -7,13 +7,10 @@ namespace NarfuSchedule.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LesssonsPage : ContentPage
     {
-        private LessonsViewModel _vm;
-
         public LesssonsPage()
         {
             InitializeComponent();
-            _vm = new LessonsViewModel();
-            BindingContext = _vm;
+            BindingContext = new LessonsViewModel();
         }
     }
 }

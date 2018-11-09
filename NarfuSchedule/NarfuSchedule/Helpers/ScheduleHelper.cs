@@ -29,7 +29,7 @@ namespace NarfuSchedule.Helpers
                 catch (WebException)
                 {
                     DependencyService.Get<IMessage>().LongTime("Невозможно получить расписание.\n" +
-                                                               "Либо сайт недоступен, либо подключитесь к интернету"); //TODO: убрать отсюда?
+                                                               "Либо сайт недоступен, либо подключитесь к интернету");
                     return 0;
                 }
             }
@@ -61,10 +61,6 @@ namespace NarfuSchedule.Helpers
             return i;
         }
 
-        //public static List<Lesson> GetExams()
-        //{
-
-        //}
 
         private static Stream GenerateStreamFromString(string s)
         {

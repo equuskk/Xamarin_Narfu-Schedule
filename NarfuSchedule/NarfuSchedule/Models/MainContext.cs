@@ -21,12 +21,7 @@ namespace NarfuSchedule.Models
 
         public static MainContext GetInstance()
         {
-            if (_instance is null)
-            {
-                _instance = new MainContext();
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new MainContext());
         }
 
         public IEnumerable<IGrouping<string, Lesson>> GetGrouperLessons()

@@ -10,13 +10,13 @@ namespace NarfuSchedule.ViewModels
     {
         public IEnumerable<IGrouping<string, Lesson>> Lessons { get; set; } = new List<IGrouping<string, Lesson>>();
 
-        public readonly MainContext _db = MainContext.GetInstance();
+        public readonly MainContext Db = MainContext.GetInstance();
         public bool IsBusy { get; set; }
 
         public LessonsViewModel()
         {
-            if (_db.Lessons.Any())
-                Lessons = _db.GetGrouperLessons();
+            if (Db.Lessons.Any())
+                Lessons = Db.GetGrouperLessons();
         }
 
         public Command RefreshCommand => new Command(async () =>
@@ -27,19 +27,16 @@ namespace NarfuSchedule.ViewModels
             if (i != 0)
                 DependencyService.Get<IMessage>().LongTime($"Добавлено {i} пар.");
 
-            Lessons = _db.GetGrouperLessons();
+            Lessons = Db.GetGrouperLessons();
             IsBusy = false;
         }, () => !IsBusy);
 
         public Command DeleteCommand => new Command(async () =>
         {
-            //TODO: ?
-            //var result = await DisplayAlert("Очистить", "Вы действительно хотите очистить список пар?", "Да", "Нет");
-            //if (!result) return;
+            Db.Lessons.Clear(); 
+            await Db.SaveChangesAsync();
 
-            _db.Lessons.Clear(); //TODO: зачем так много строк?
-            await _db.SaveChangesAsync();
-            Lessons = _db.GetGrouperLessons();
+            Lessons = Db.GetGrouperLessons();
         }, () => Lessons.Any());
     }
 }

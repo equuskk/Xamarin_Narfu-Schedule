@@ -9,7 +9,7 @@
             <ActivityIndicator IsRunning="{Binding IsBusy}"
                                IsVisible="{Binding IsBusy}"/>
         </StackLayout>
-        <ListView Margin="5" BackgroundColor="LightSeaGreen" 
+        <ListView Margin="5" BackgroundColor="Bisque" 
                   HasUnevenRows="True"
                   ItemsSource="{Binding Lessons}"
                   IsGroupingEnabled="true"
@@ -21,7 +21,7 @@
                     <ViewCell Height="25">
                         <StackLayout VerticalOptions="FillAndExpand"
                                      Padding="5"
-                                     BackgroundColor="#3498DB">
+                                     BackgroundColor="BurlyWood">
                             <Label Text="{Binding Key}" 
                                    TextColor="White" VerticalOptions="Center"/>
                         </StackLayout>

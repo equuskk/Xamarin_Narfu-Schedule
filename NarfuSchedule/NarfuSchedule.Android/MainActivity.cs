@@ -6,7 +6,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace NarfuSchedule.Droid
 {
-    [Activity(Label = "NarfuSchedule", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Расписание САФУ", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
